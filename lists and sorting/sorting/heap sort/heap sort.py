@@ -38,6 +38,6 @@ def heap_sort(nums):
 
 
 # Verify it works
-random_list_of_nums = [35, 12, 43, 8, 51]
+random_list_of_nums = [35, 12, 43, 8, 51, 3, 45, 65, 74,87]
 heap_sort(random_list_of_nums)
 print(random_list_of_nums)
