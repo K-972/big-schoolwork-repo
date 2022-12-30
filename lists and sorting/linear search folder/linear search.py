@@ -3,6 +3,6 @@ def linearsearch(arr, x):
       if arr[i] == x:
          return i
    return -1
-arr = ['t','u','t','o','r','i','a','l']
+arr = ['t','u','t','o','r','a','i','l']
 x = 'a'
 print("element found at index "+str(linearsearch(arr,x)))
