@@ -3,6 +3,14 @@ import hashlib
 import sys
 
 
+def edit():
+    pass
+
+
+def exploring():
+    pass
+
+
 password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
 # hashed_password = hashlib.sha256(str.encode(pasword)).hexdigest()
 
@@ -22,7 +30,7 @@ def start_screen():
 
 def main():
     start_screen()
-    password_input = input("\nPlease enter password >>")
+    password_input = input("\nPlease enter password >> ")
     password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
     if password_input == password:
         allowed_access = True
@@ -42,12 +50,13 @@ def main():
                 time.sleep(1)
 
                 what_to_do = input("what do you want to do >> ")
+                print("\n----------------------------------------\n")
                 if what_to_do.lower() == "edit":
-                    what_to_do_loop = False
-                    print("hi")
+                    edit()
                 
-
-
+                if what_to_do.lower() == "explore":
+                    print("exploring")
+                    exploring()
                 elif what_to_do.lower() == "exit":
                     sys.exit()
 
