@@ -1,18 +1,17 @@
-from cryptography.fernet import Fernet
 import time
-key = Fernet.generate_key()
-cipher_suite = Fernet(key)
+import hashlib
+from hashlib import sha256
+import sys
 
-cipher_text = cipher_suite.encrypt(b"A really secret message. Not for prying eyes.")
-plain_text = cipher_suite.decrypt(cipher_text)
-PASSWORD = b'gAAAAABjsxMwxBTFdQ9_tFMYv-Ko1Ja7t5afvMiJBehRMqJyp-OapyRbP2IPBsboI-rZilgXhcIIpWWXq1Bwo732st7celJvX52Ahxten8lbF0LMzw7ND9Q9r2UFPeTyJjOp9Dr0mqhd'
-password_decrypted = cipher_suite.decrypt(PASSWORD)
+
+password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
+# hashed_password = hashlib.sha256(str.encode(pasword)).hexdigest()
 
 #################
 ### main menu ###
 #################
 
-def main_menu():
+def start_screen():
     print("----------------------------------------")
     print("\n    Welcome to K9's password manager.")
     print("                     Made by K972.\n")
@@ -23,9 +22,10 @@ def main_menu():
 ############
 
 def main():
-    main_menu()
+    start_screen()
     password_input = input("\n\n\nPlease enter password >> ")
-    if password_input == password_decrypted:
+    password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
+    if password_input == password:
         allowed_access = True
         while allowed_access:
             print("login sucessful")
@@ -33,8 +33,7 @@ def main():
         allowed_access = False
         print("wrong password you sussy imposter.")
         time.sleep(5)
-        quit()
-
+        sys.exit()
 
 
 
@@ -42,4 +41,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
