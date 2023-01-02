@@ -1,6 +1,5 @@
 import time
 import hashlib
-from hashlib import sha256
 import sys
 
 
@@ -23,12 +22,35 @@ def start_screen():
 
 def main():
     start_screen()
-    password_input = input("\n\n\nPlease enter password >> ")
+    password_input = input("\nPlease enter password >>")
     password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
     if password_input == password:
         allowed_access = True
+        time.sleep(2)
+        print("\nAccess Granted")
         while allowed_access:
-            print("login sucessful")
+            
+            print("\n----------------------------------------\n")
+            what_to_do_loop = True
+            while what_to_do_loop == True:
+                time.sleep(1)
+                print("type \"edit\" to edit your password list\n")
+                time.sleep(1)
+                print("type \"explore\" to see your list\n")
+                time.sleep(1)
+                print("or type \"exit\" to exit the programme\n")
+                time.sleep(1)
+
+                what_to_do = input("what do you want to do >> ")
+                if what_to_do.lower() == "edit":
+                    what_to_do_loop = False
+                    print("hi")
+                
+
+
+                elif what_to_do.lower() == "exit":
+                    sys.exit()
+
     else:
         allowed_access = False
         print("wrong password you sussy imposter.")
