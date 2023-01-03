@@ -4,7 +4,7 @@ import sys
 
 
 def edit():
-    pass
+    print("edit")
 
 
 def exploring():
@@ -12,7 +12,6 @@ def exploring():
 
 
 password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
-# hashed_password = hashlib.sha256(str.encode(pasword)).hexdigest()
 
 #################
 ### main menu ###
