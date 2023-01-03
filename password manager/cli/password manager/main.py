@@ -3,9 +3,28 @@ import hashlib
 import sys
 
 
-def edit():
-    print("edit")
 
+def edit():
+    true_statement_1 = True
+    while true_statement_1:
+        print("type \"add\" to add to your password list\n")
+        time.sleep(1)
+        print("type \"remove\" to remove from your list\n")
+        time.sleep(1)
+        print("or type \"modify\" to modify your list\n")
+        time.sleep(1)
+        print("or type \"exit\" to leave the programme\n")
+        time.sleep(1)
+        edit_decision = input('what do you want to do >> ')
+
+        if edit_decision.lower() == "add":
+            break
+        if edit_decision.lower() == "remove":
+            break
+        if edit_decision.lower() == "modify":
+            break
+        if edit_decision.lower() == "exit":
+            sys.exit()
 
 def exploring():
     pass
