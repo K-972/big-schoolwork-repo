@@ -1,8 +1,9 @@
 import time
 import hashlib
 import sys
+from cryptography.fernet import Fernet
 
-
+passwords = [["youtube -> email = test_email@test.co.uk | password = password123"], []]
 
 def edit():
     true_statement_1 = True
@@ -54,6 +55,7 @@ def main():
         allowed_access = True
         time.sleep(2)
         print("\nAccess Granted")
+        print(passwords)
         while allowed_access:
             
             print("\n----------------------------------------\n")
