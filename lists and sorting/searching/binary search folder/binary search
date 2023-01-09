@@ -14,8 +14,9 @@ def binarySearchAppr (arr, start, end, x):
    else:
       # Element is not found in the array
       return -1
+# add option to import a list through notepad to search through the array
 arr = sorted(['t','u','t','o','r','i','a','l'])
-x ='r'
+x ='u'
 result = binarySearchAppr(arr, 0, len(arr)-1, x)
 if result != -1:
    print ("Element is present at index "+str(result))

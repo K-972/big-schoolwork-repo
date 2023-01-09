@@ -1,7 +1,9 @@
 import time
 import hashlib
 import sys
+from cryptography.fernet import Fernet
 
+passwords = [["youtube -> email = test_email@test.co.uk | password = password123"], ["google -> email = google_email@test.co.uk | password = googlepass"]]
 
 
 def edit():
@@ -26,9 +28,13 @@ def edit():
         if edit_decision.lower() == "exit":
             sys.exit()
 
-def exploring():
-    pass
+# need to build a way to search through and select a password from the list
 
+def exploring():
+
+    #searching_decision = input("")
+
+    pass
 
 password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
 
@@ -54,6 +60,7 @@ def main():
         allowed_access = True
         time.sleep(2)
         print("\nAccess Granted")
+        print(passwords[0])
         while allowed_access:
             
             print("\n----------------------------------------\n")
