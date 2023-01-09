@@ -3,7 +3,6 @@ import hashlib
 import sys
 from cryptography.fernet import Fernet
 
-passwords = [["youtube -> email = test_email@test.co.uk | password = password123"], ["google -> email = google_email@test.co.uk | password = googlepass"]]
 
 
 def edit():
@@ -60,7 +59,6 @@ def main():
         allowed_access = True
         time.sleep(2)
         print("\nAccess Granted")
-        print(passwords[0])
         while allowed_access:
             
             print("\n----------------------------------------\n")
