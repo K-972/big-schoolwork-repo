@@ -2,13 +2,14 @@
 
 
 def get_values():
-    childs_name = input("Enter the childs name: ")
+    chlids_name = input("Enter the childs name: ")
     chlids_mark = input("Enter the childs mark: ")
     chlids_age = input("Enter the childs age: ")
-    return childs_name, chlids_mark, chlids_age
+
+    return chlids_name, chlids_mark, chlids_age
 
 
-def main(childs_name, chlids_mark, chlids_age):
+def main(chlids_name, chlids_mark, chlids_age):
 
     #############################
     ###     calculations      ###
@@ -23,12 +24,12 @@ def main(childs_name, chlids_mark, chlids_age):
     elif chlids_mark >= 90:
         childs_grade = "distinction"
 
-    with open("grades.txt", "a") as f:
-        f.write(childs_name + "," + chlids_mark + "," + chlids_age + "," + childs_grade + "\n")
+    with open("grades.txt", "w") as f:
+        f.write(chlids_name + "," + chlids_mark + "," + chlids_age + "," + childs_grade + "\n")
 
-    
 
-get_values()
-main(*get_values())
+if __name__ == "__main__":
+    get_values()
+    main(*get_values())
 
     
