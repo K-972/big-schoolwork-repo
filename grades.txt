@@ -1,2 +1,2 @@
-name, mark, age, grade, percentage
+name, mark, grade, percentage
 
