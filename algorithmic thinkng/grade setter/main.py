@@ -31,9 +31,9 @@ def main():
     elif chlids_mark >= 90:
         childs_grade = "distinction"
 
-    #with open("grades.txt", "a") as file:
-        #chlids_mark = str(chlids_mark)
-        #file.write(chlids_name + "," + chlids_mark + "," + chlids_age + "," + childs_grade + percentage + "\n")
+    with open("grades.txt", "a") as file:
+        chlids_mark = str(chlids_mark)
+        file.write(chlids_name + "," + chlids_mark + "," + chlids_age + "," + childs_grade + percentage + "\n")
     
 
     # create a sample DataFrame
