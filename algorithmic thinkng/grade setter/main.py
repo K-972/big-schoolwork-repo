@@ -1,17 +1,21 @@
+# import required libraries
 import pandas as pd
 import os
 
+# get current working directory
 cwd = os.getcwd()
 
+# get user input for number of kids and maximum marks
 number_of_inputs = int(input("Enter the number of kids to input: "))
-current_kids_done = 0
 max_marks = int(input("Enter the maximum marks: "))
 
 # create an empty DataFrame to hold all the kids' data
 df = pd.DataFrame(columns=['Name', 'Mark', 'Max Marks', 'Grade', 'Percentage'])
 
+# define main function to get user input, calculate grades, and append data to DataFrame
 def main():
 
+    # access the global DataFrame variable
     global df
 
     # get input from user
@@ -24,18 +28,14 @@ def main():
     percentage = round(percentage, 2)
 
     # calculate grade boundaries
-
-    # 50%
-    fail_grade_boundaries = (max_marks * 0.5)
+    fail_grade_boundaries = (max_marks * 0.5)  # 50%
     fail_grade_boundaries = round(fail_grade_boundaries)
-    # 70%
-    pass_grade_boundaries = (max_marks * 0.7)
+    pass_grade_boundaries = (max_marks * 0.7)  # 70%
     pass_grade_boundaries = round(pass_grade_boundaries)
-    # 90%
-    merit_grade_boundaries = (max_marks * 0.9)
+    merit_grade_boundaries = (max_marks * 0.9)  # 90%
     merit_grade_boundaries = round(merit_grade_boundaries)
 
-
+    # determine the grade based on the mark
     if mark < fail_grade_boundaries:
         grade = "Fail"
     elif mark >= fail_grade_boundaries and mark < pass_grade_boundaries:
@@ -44,9 +44,6 @@ def main():
         grade = "Merit"
     elif mark >= merit_grade_boundaries:
         grade = "Distinction"
-
-    with open("grades.txt", "a") as f:
-        f.write(f"{name}, {mark}, {max_marks}, {grade}, {percentage}\n")
 
     # append the new data to the existing DataFrame
     new_data = pd.DataFrame({"Name": [name],
@@ -57,11 +54,15 @@ def main():
 
     df = pd.concat([df, new_data], ignore_index=True)
 
+    # write the data to a text file for backup
+    with open("grades.txt", "a") as f:
+        f.write(f"{name}, {mark}, {max_marks}, {grade}, {percentage}\n")
+
+# check if this is the main program and run the main function for the number of kids specified
 if __name__ == "__main__":
     for current_kid in range(number_of_inputs):
         main()
-        current_kids_done += 1
 
-    # write the complete DataFrame to the Excel file
+    # write the complete DataFrame to an Excel file
     with pd.ExcelWriter('output.xlsx') as writer:
         df.to_excel(writer, sheet_name='Sheet1', index=False)
