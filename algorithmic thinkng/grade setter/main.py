@@ -27,7 +27,7 @@ def main():
     percentage = (mark / max_marks) * 100
     percentage = round(percentage, 2)
 
-    # calculate grade boundaries
+    # calculate grade boundaries via percentage
     fail_grade_boundaries = (max_marks * 0.5)  # 50%
     fail_grade_boundaries = round(fail_grade_boundaries)
     pass_grade_boundaries = (max_marks * 0.7)  # 70%
@@ -54,15 +54,15 @@ def main():
 
     df = pd.concat([df, new_data], ignore_index=True)
 
-    # write the data to a text file for backup
-    with open("grades.txt", "a") as f:
-        f.write(f"{name}, {mark}, {max_marks}, {grade}, {percentage}\n")
+    # writes the data to a text file for backup and checking correct input is being logged
+    with open("grades.txt", "a") as txt_file:
+        txt_file.write(f"{name}, {mark}, {max_marks}, {grade}, {percentage}\n")
 
-# check if this is the main program and run the main function for the number of kids specified
+# checks if this is the main prograam and run the main function for the number of kids specified
 if __name__ == "__main__":
     for current_kid in range(number_of_inputs):
         main()
 
-    # write the complete DataFrame to an Excel file
+    # write the complete DataFrame to an Excel file namwd output
     with pd.ExcelWriter('output.xlsx') as writer:
         df.to_excel(writer, sheet_name='Sheet1', index=False)
