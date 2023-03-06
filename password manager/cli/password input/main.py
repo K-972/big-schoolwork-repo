@@ -22,11 +22,6 @@ def main_menu_no_login():
         time.sleep(2)
         main_menu_no_login()
 
-array = [
-    ['user1', 'password1'],
-    ['user2', 'password2'],
-    ['user3', 'password3']
-]
 
 def add_password():
 
