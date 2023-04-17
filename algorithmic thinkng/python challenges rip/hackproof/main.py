@@ -14,7 +14,6 @@ def create_password():
         file.write(username)
         file.write('\n')
         file.write(password)
-        file.write('\n')
 
 def login():
     alive_username = input('Enter your username: ')
@@ -23,18 +22,25 @@ def login():
     alive_password = hashlib.sha256(alive_password.encode('utf-8')).hexdigest()
 
     with open('password.txt', 'r') as file:
-        line = file.readlines()
-        username = line[1]
-        password = line[2]
+        username = (file.readline())
+        print(alive_username)
+        print(username)
+        password = (file.readline())
+        print(password)
+        print(alive_password)
 
     if alive_password == password and alive_username == username:
         with open('document.txt', 'r', encoding='utf-8') as file:
-            print('to do')
+            print('#to do')
             pass
+    else: 
+        print('wrong password')
 
 
 
 
+#user = hig
+#pass = highig
 
 main_menu = input('press - 1 to login    press - 2 to create a password: ')
 if main_menu == '1':
