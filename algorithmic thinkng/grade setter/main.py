@@ -63,6 +63,6 @@ if __name__ == "__main__":
     for current_kid in range(number_of_inputs):
         main()
 
-    # write the complete DataFrame to an Excel file namwd output
+    # write the complete DataFrame to an Excel file named output
     with pd.ExcelWriter('output.xlsx') as writer:
         df.to_excel(writer, sheet_name='Sheet1', index=False)
