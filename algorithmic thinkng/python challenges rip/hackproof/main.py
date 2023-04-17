@@ -1,5 +1,4 @@
 import hashlib
-from hashlib import sha256
 
 # i don't know what this does or why it is here. but it stays because everytime i remove it my programme breaks
 import os
@@ -32,7 +31,7 @@ def login():
     if alive_password == password and alive_username == username:
         with open('document.txt', 'r', encoding='utf-8') as file:
             print('#to do')
-            pass
+            
     else: 
         print('wrong password')
 
