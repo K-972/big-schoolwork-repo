@@ -1,8 +1,20 @@
 import hashlib
+from cryptography.fernet import Fernet
+
 
 # i don't know what this does or why it is here. but it stays because everytime i remove it my programme breaks
 import os
 print(os.getcwd())
+
+def write_key():
+    """
+    generates the encryption key and puts it into a file
+    """
+    key = Fernet.generate_key()
+
+    with open("key.key", "wb") as key_file:
+        key_file.write(key)
+
 
 def create_password():
     username = input('Enter your username: ')
