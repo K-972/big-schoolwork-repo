@@ -9,10 +9,14 @@ def create_password():
     password = input('Enter your password: ')
     username = hashlib.sha256(username.encode('utf-8')).hexdigest()
     password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    with open('password.txt', 'a', encoding='utf-8') as file:
+    
+    with open('password.txt', 'w', encoding='utf-8') as file: # use 'w' mode to wipe the file
         file.write(username)
         file.write('\n')
         file.write(password)
+    
+    print('Password created successfully.')
+
 
 def login():
     alive_username = input('Enter your username: ')
@@ -21,19 +25,29 @@ def login():
     alive_password = hashlib.sha256(alive_password.encode('utf-8')).hexdigest()
 
     with open('password.txt', 'r') as file:
-        username = (file.readline())
-        print(alive_username)
-        print(username)
-        password = (file.readline())
-        print(password)
-        print(alive_password)
+        username = file.readline().strip()
+        password = file.readline().strip()
 
     if alive_password == password and alive_username == username:
-        with open('document.txt', 'r', encoding='utf-8') as file:
-            print('#to do')
+        
+        print('Login successful!')
+        while True:
+            choice = input('Choose an option:\n1. View document\n2. Edit document\n3. Logout\n')
+            if choice == '1':
+                with open('document.txt', 'r', encoding='utf-8') as file:
+                    print(file.read())
+            elif choice == '2':
+                with open('document.txt', 'a', encoding='utf-8') as file:
+                    text = input('Enter text to add to document: ')
+                    file.write('\n' + text)
+            elif choice == '3':
+                print('Logging out...')
+                break
+            else:
+                print('Invalid choice. Please try again.')
             
     else: 
-        print('wrong password')
+        print('Wrong password')
 
 
 
