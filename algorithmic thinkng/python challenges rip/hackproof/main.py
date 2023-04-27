@@ -37,7 +37,7 @@ def login():
     alive_username = hashlib.sha256(alive_username.encode('utf-8')).hexdigest()
     alive_password = hashlib.sha256(alive_password.encode('utf-8')).hexdigest()
 
-    with open('password.txt', 'r') as file:
+    with open('password.txt', 'r', encoding='utf-8') as file:
         username = file.readline().strip()
         password = file.readline().strip()
 
@@ -65,8 +65,6 @@ def login():
 
 
 
-#user = hig
-#pass = highig
 
 main_menu = input('press - 1 to login    press - 2 to create a password: ')
 if main_menu == '1':
