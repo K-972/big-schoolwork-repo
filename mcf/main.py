@@ -2,6 +2,9 @@ from selenium import webdriver
 import random
 import time
 
+##########################################
+############ DEPRECIATED CODE ############
+##########################################
 
 count = input("Enter the number of times you want to run the script: ")
 while count != 0:
