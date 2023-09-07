@@ -1,6 +1,6 @@
-wordlist = open("dict.txt").readlines()
-# eliminate whitelines
-wordlist = [word.lower().strip() for word in dict]
+sowpods = open("sowpods.txt").readlines()
+# eliminate newlines
+wordlist = [word.lower().strip() for word in sowpods]
 
 scores = {"a": 1, "c": 3, "b": 3, "e": 1, "d": 2, "g": 2,
           "f": 4, "i": 1, "h": 4, "k": 5, "j": 8, "m": 3,
@@ -13,7 +13,10 @@ scores = {"a": 1, "c": 3, "b": 3, "e": 1, "d": 2, "g": 2,
 letters = []
 count = 0
 while count != 7:
-    letter = input("Enter a letter or - for blank")
+    letter = input("Enter a letter or - for blank: ")
     letters.append(letter)
     count += 1
-    print(count)
+
+for word in wordlist:
+    availableLetters = letters[:]
+    print(availableLetters)
