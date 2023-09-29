@@ -5,6 +5,10 @@ from cryptography.fernet import Fernet
 
 
 
+password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
+
+hashed_key = 'c6b34ed2e923b8670ff6f4c675f9e2c71565a5b7c88384d422e46c404652a5a3'
+
 def edit():
     true_statement_1 = True
     while true_statement_1:
@@ -31,11 +35,11 @@ def edit():
 
 def exploring():
 
-    #searching_decision = input("")
+    
 
     pass
 
-password = 'e5dfed079b2bb64718bb391046739a3e342145baa274d5290f4099566531c4ee'
+
 
 #################
 ### main menu ###
@@ -55,7 +59,10 @@ def main():
     start_screen()
     password_input = input("\nPlease enter password >> ")
     password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
-    if password_input == password:
+    key = input("Enter encryption key: ")
+    key_hashed = 'variable assignment'
+    key_hashed = hashlib.sha256(str.encode(key_hashed)).hexdigest()
+    if password_input == password and key_hashed == hashed_key:
         allowed_access = True
         time.sleep(2)
         print("\nAccess Granted")
