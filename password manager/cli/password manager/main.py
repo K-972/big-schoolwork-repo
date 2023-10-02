@@ -50,23 +50,27 @@ def edit():
             print('\n') 
             print("----------------------------------------")
             print('\n') 
-            name_of_service = input("enter name of service >> ")
-            username = input("Enter username >> ")
-            email = input("Enter email >> ")
-            password = input("Enter password >> ")
-            invalid_input = True
-            while invalid_input:
-                check_if_correct = input(f"Name of service = {name_of_service} \nUsername = {username}\nEmail = {email}\nPassword = {password}\nIs this correct? y/n >> ")
-                if check_if_correct.lower() == 'y':
-                    with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
-                        dictionary.write(f"{name_of_service} {username} {email} {password}\n")
-                    invalid_input = False
-                elif check_if_correct.lower() == 'n':
-                    pass
+            restart = True
+            while restart == True:
+                name_of_service = input("enter name of service >> ")
+                username = input("Enter username >> ")
+                email = input("Enter email >> ")
+                password = input("Enter password >> ")
+                invalid_input = True
+                while invalid_input:
+                    check_if_correct = input(f"Name of service = {name_of_service} \nUsername = {username}\nEmail = {email}\nPassword = {password}\nIs this correct? y/n >> ")
+                    if check_if_correct.lower() == 'y':
+                        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
+                            dictionary.write(f"{name_of_service} {username} {email} {password}\n")
+                        invalid_input = False
+                        restart = False
+                    elif check_if_correct.lower() == 'n':
+                        pass
 
-                    invalid_input = False
-                else:
-                    print("Invalid input. Please try again.")
+                        invalid_input = False
+                    else:
+                        print("Invalid input. Please try again.")
+                        restart = False
                     
                 
 
