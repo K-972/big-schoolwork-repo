@@ -117,7 +117,7 @@ def start_screen():
 ### main ###
 ############
 
-def login():
+def login(allowed_access):
     password_input = input("\nPlease enter password >> ")
     password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
     key = input("Enter encryption key >> ")
@@ -145,7 +145,7 @@ def main():
         allowed_access = True
         key = 'gAAAAABlFqDhXkF5ktaAZbwj6nZyjFligRdUZJ24K35pQX_IZT9nFg_xkS6iaDM_sBPo8WNVo8iI40aUdOYfJ24nR3AR8o7wrWeGSTFuU6UUrWYTCNSkc9A='
     elif mode_select.lower() == "u":
-        login()
+        allowed_access = login(allowed_access)
 
     else:
         allowed_access = False
