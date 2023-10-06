@@ -1,2 +1,4 @@
 name, mark, grade, percentage
 
+ethan, 19, 20, Distinction, 95.0
+tony, 11, 20, Pass, 55.0

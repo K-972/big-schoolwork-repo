@@ -28,6 +28,15 @@ from cryptography.fernet import Fernet
 #key = Fernet.generate_key()
 
 
-password_input = input("\nPlease enter password >> ")
-password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
-print(password_input)
+#password_input = input("\nPlease enter password >> ")
+#password_input = hashlib.sha256(str.encode(password_input)).hexdigest()
+#print(password_input)
+key = b'l3vZ2XL6fsl2UTCYeq-00k162exuUIrBC3_y96xFN5M='
+
+def encrypt(thing_to_encrypt, key):
+    f = Fernet(key)
+    cipher_text = f.encrypt(thing_to_encrypt.encode())
+    return cipher_text
+username = input("Enter username >> ")
+encrypted_username = encrypt(username, key)
+print(encrypted_username)

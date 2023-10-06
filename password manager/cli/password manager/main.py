@@ -3,10 +3,24 @@ import hashlib
 import sys
 from cryptography.fernet import Fernet
 
+key = ''
+
+global password_list
+password_list = []
+def decrypt(thing_to_decrypt, key):
+    f = Fernet(key)
+    decrypted_text = f.decrypt(thing_to_decrypt)
+    return decrypted_text.decode()
+
+def read_file():
+    with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
+        lines = dictionary.readlines()
+        return lines
 
 def encrypt(thing_to_encrypt, key):
     f = Fernet(key)
-    cipher_text = f.encrypt(thing_to_encrypt)
+    cipher_text = f.encrypt(thing_to_encrypt.encode())
+    return cipher_text
 
 def check_if_edit_parameters_correct(thing_to_check):
     pass_check = False
@@ -33,7 +47,7 @@ def check_if_edit_parameters_correct(thing_to_check):
 
 
 
-def edit():
+def edit(key):
     true_statement_1 = True
     while true_statement_1:
         print("type \"add\" to add to your password list\n")
@@ -52,25 +66,39 @@ def edit():
             print('\n') 
             restart = True
             while restart == True:
+                time.sleep(1)
                 name_of_service = input("enter name of service >> ")
+                print('\n')
+                time.sleep(1)
                 username = input("Enter username >> ")
+                encrypted_username = encrypt(username, key)
+                print('\n')
+                time.sleep(1)
                 email = input("Enter email >> ")
+                encrypted_email = encrypt(email, key)
+                print('\n')
+                time.sleep(1)
                 password = input("Enter password >> ")
+                encrypted_password = encrypt(password, key)
+                print('\n')
+                time.sleep(1)
                 invalid_input = True
+
                 while invalid_input:
-                    check_if_correct = input(f"Name of service = {name_of_service} \nUsername = {username}\nEmail = {email}\nPassword = {password}\nIs this correct? y/n >> ")
+                    check_if_correct = input(f"Name of service = {name_of_service} \n\nUsername = {username}\n\nEmail = {email}\n\nPassword = {password}\n\nIs this correct? y/n >> ")
+                    print("\n")
                     if check_if_correct.lower() == 'y':
-                        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
-                            dictionary.write(f"{name_of_service} {username} {email} {password}\n")
+                        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'a') as dictionary:
+                            dictionary.write(f"{name_of_service}|{encrypted_username}|{encrypted_email}|{encrypted_password}") 
+                            dictionary.write('\n')      
                         invalid_input = False
                         restart = False
                     elif check_if_correct.lower() == 'n':
-                        pass
-
                         invalid_input = False
                     else:
                         print("Invalid input. Please try again.")
                         restart = False
+                    print("----------------------------------------")
                     
                 
 
@@ -90,10 +118,14 @@ def edit():
 # need to build a way to search through and select a password from the list
 
 def exploring():
+    splurge_or_search = input("\nType \"s\" to search for a password or \"e\" to see all >> \n")
+    if splurge_or_search.lower() == "s":
+        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
+            lines = dictionary.readlines()
+            password_list = [line.strip().split('|') for line in lines]
+        number_of_matrix_clos = len(password_list[0])
 
-    with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
-        lines = dictionary.readlines()
-        print(lines)
+        print(password_list)
 
     
 
@@ -130,20 +162,20 @@ def login(allowed_access):
         allowed_access = True
         time.sleep(2)
         print("\nAccess Granted")
-        return allowed_access
+        return allowed_access, key
     else:
         allowed_access = False
         print("wrong password")
         time.sleep(5)
         sys.exit()
         
-def main():
+def main(edit, key):
     allowed_access = False
     start_screen()
-    mode_select = input("d for developer mode or u for user >> ")
+    mode_select = input("\nd for developer mode or u for user >> ")
     if mode_select.lower() == "d":
         allowed_access = True
-        key = 'gAAAAABlFqDhXkF5ktaAZbwj6nZyjFligRdUZJ24K35pQX_IZT9nFg_xkS6iaDM_sBPo8WNVo8iI40aUdOYfJ24nR3AR8o7wrWeGSTFuU6UUrWYTCNSkc9A='
+        key = b'l3vZ2XL6fsl2UTCYeq-00k162exuUIrBC3_y96xFN5M='
     elif mode_select.lower() == "u":
         allowed_access = login(allowed_access)
 
@@ -169,7 +201,7 @@ def main():
             what_to_do = input("what do you want to do >> ")
             print("\n----------------------------------------\n")
             if what_to_do.lower() == "edit":
-                edit()
+                edit(key)
             
             if what_to_do.lower() == "explore":
                 print("exploring")
@@ -182,4 +214,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(edit, key)
