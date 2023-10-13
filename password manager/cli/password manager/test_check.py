@@ -16,3 +16,6 @@ thing_to_check = input("Enter the name: ")
 check_if_edit_parameters_correct(thing_to_check)
 
 print(thing_to_check)
+
+key = "b'l3vZ2XL6fsl2UTCYeq-00k162exuUIrBC3_y96xFN5M='"
+print(key)
