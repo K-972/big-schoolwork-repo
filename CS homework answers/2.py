@@ -59,7 +59,10 @@ def task_five():
         LeapYear = FALSE
     if (mod (Year,400) == 0) then
         LeapYear = TRUE
-        
+    if leapyear == True:
+        print("leapyear")
+    else:
+        print("not a leap year")
 
 
 
