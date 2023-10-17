@@ -25,3 +25,24 @@ def task_two():
             attempt_num = attempt_num + 1
         else:
             print("correct password")
+
+def task_three():
+    traceTable1 = """0	0	100	0	
+2	2	100	2	
+7	7	100	9	
+3	7	3	12	
+8	8	3	20	
+-1	8	3	20	Max sunshine hours: 8
+Min sunshine hours: 3
+Total sunshine hours: 20"""
+
+problem1 =  "The problem with the original algorithm is that it does not correctly initialize the maxHours, minHours, and totalSunshine variables. They are initially set to values that may not be accurate for the given input data, and it assumes that the user will input at least one positive value before entering -1. If the user doesn't input any positive values, the results will be incorrect."
+
+traceTable2 = """0	0	100	0	
+2	2	100	2	
+7	7	100	9	
+3	7	3	12	
+8	8	3	20	
+-1	8	3	20	Max sunshine hours: 8
+Min sunshine hours: 3
+Total sunshine hours: 20"""

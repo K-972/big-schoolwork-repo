@@ -2,6 +2,8 @@ import time
 import hashlib
 import sys
 from cryptography.fernet import Fernet
+import ast
+
 
 key = ''
 
@@ -28,6 +30,7 @@ def decrypt_list(password_list, key):
         decrypted_entry = [entry[0]]  # Keep the first element (name of service) as is
         for encrypted_value in entry[1:]:
             print(key)
+            ast.literal_eval(stringAsByte)
             decrypted_value = f.decrypt(encrypted_value.encode()).decode()
             decrypted_entry.append(decrypted_value)
         decrypted_passwords.append(decrypted_entry)
