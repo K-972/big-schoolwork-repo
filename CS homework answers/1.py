@@ -14,6 +14,8 @@ def task_one():
     print(f"kilograms to punds: {converted_pounds}")
     print(f"Pounds to Kilograms: {converted_kilos}")
 
+######## 4 marks ##########
+
 def task_two():
         
     number = int(input("Enter a three-digit number: "))
@@ -31,6 +33,9 @@ def task_two():
         print("Units:", units)
     else:
         print("Please enter a valid three-digit number.")
+        ############################
+        ######### 6 marks ##########
+        ############################
 
 def task_three():
     a = "Password length verification ensures security by requiring longer, harder-to-crack passwords."
@@ -41,11 +46,30 @@ def task_three():
         return True 
     else:
         return False
+    
+    ############################
+    ######### 3 marks ##########
+    ############################
 
 def task_four():
     print("Variables for changing values, constants for values that should never change, like mathematical constants (e.g., pi)")
 
+    ############################
+    ######### 2 marks ##########
+    ############################
+
 def task_five():
     print("Auto-Completion: Helps complete code and reduce errors.\nSyntax Highlighting: Highlights code with colors to identify syntax elements for clarity.")
     print("Code Debugging Tools: Allow setting breakpoints and step through code.\nError Messages: Provides detailed error messages to pinpoint issues.\nCode Analysis: Identifies potential logic errors through static analysis or linting.")
+
+
+    ############################
+    ######### 5 marks ##########
+    ############################
+
+
+#######################################
+######### 20 marks out of 20 ##########
+#######################################
+
 

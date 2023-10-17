@@ -14,7 +14,6 @@ def two_d_password_list():
     with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
         lines = dictionary.readlines()
         password_list = [line.strip().split('|') for line in lines]
-    number_of_matrix_clos = len(password_list[0])
     return password_list
 
 #stack overflow code ---|
@@ -30,7 +29,7 @@ def decrypt_list(password_list, key):
         decrypted_entry = [entry[0]]  # Keep the first element (name of service) as is
         for encrypted_value in entry[1:]:
             print(key)
-            ast.literal_eval(stringAsByte)
+            ast.literal_eval(encrypted_value)
             decrypted_value = f.decrypt(encrypted_value.encode()).decode()
             decrypted_entry.append(decrypted_value)
         decrypted_passwords.append(decrypted_entry)
@@ -158,10 +157,12 @@ def exploring(key):
     splurge_or_search = input("\nType \"s\" to search for a password or \"e\" to see all >> \n")
     if splurge_or_search.lower() == "s":
         password_list = two_d_password_list()
+        for value in password_list[0]:
+            ast.literal_eval(value)
         print(password_list)
         decrypted_passwords = decrypt_list(password_list, key)
         print(decrypted_passwords)
-    elif splurge_or_search.lower() == "":
+    elif splurge_or_search.lower() == "e":
         pass
 
     
@@ -212,7 +213,7 @@ def main(edit, key):
     mode_select = input("\nd for developer mode or u for user >> ")
     if mode_select.lower() == "d":
         allowed_access = True
-        key = "b'l3vZ2XL6fsl2UTCYeq-00k162exuUIrBC3_y96xFN5M='"
+        key = b'l3vZ2XL6fsl2UTCYeq-00k162exuUIrBC3_y96xFN5M='
     elif mode_select.lower() == "u":
         allowed_access = login(allowed_access)
 

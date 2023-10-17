@@ -11,6 +11,7 @@ It means that the internal state (attributes) of an object should not be directl
 To achieve data hiding, you declare the attributes as private or protected, and access to them is only allowed through methods (getters and setters) defined in the class.
 (c) Instantiation:
 
+
 Instantiation is the process of creating an instance (object) of a class.
 When you instantiate a class, you are creating a specific object that has its own set of attributes and can perform actions defined by the class's methods.
 (d) Inheritance:
@@ -22,6 +23,9 @@ This promotes code reuse and the creation of a hierarchy of classes.
 Polymorphism means the ability of different objects to respond to the same method or function call in a way that is appropriate for their specific types.
 This allows for flexibility and extensibility in your code, as objects of different classes can be treated uniformly when they share a common interface or method name.
 """
+############################
+######### 9 marks ##########
+############################
 
 class Member:
     private surname
@@ -34,10 +38,12 @@ class Member:
         annualFee = myAnnualFee
     endprocedure
 
+    ############################
+    ######### 3 marks ##########
+    ############################
+
     public procedure amendDetails(mySurname, myFirstName, myAnnualFee)
-        surname = mySurname
-        firstname = myFirstName
-        annualFee = myAnnualFee
+        ( -- DO NOT COMPLETE --)
     endprocedure
 
     (other procedures – do not complete)
@@ -51,17 +57,34 @@ class JuniorMember inherits Member:
         dateOfBirth = myDateOfBirth
     endprocedure
 
+    ############################
+    ######### 2 marks ##########
+    ############################
+
     (other procedures – do not complete)
 endclass
 
 # harry = JuniorMember("Mason", "Harry", 25.00, "12/12/2004")
+WHEN IS PSUEDO CODE YOU NEED TO PUT NEW
+
+    ############################
+    ######### 1 marks ##########
+    ############################
+
 
 #public procedure amendAnnualFee(newFee)
 #    annualFee = newFee
 #endprocedure
 
+    ############################
+    ######### 2 marks ##########
+    ############################
+
+
 #public procedure getDateOfBirth()
 #   return dateOfBirth
 #endprocedure
 
-
+    ############################
+    ######### 2 marks ##########
+    ############################

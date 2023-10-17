@@ -14,6 +14,10 @@ def task_1():
             lowest = letter
     print(f"highest = {highest}, lowest = {lowest} ")
 
+    ############################
+    ######### 6 marks ##########
+    ############################
+
 def task_two():
     password = “Tues1212”
     attempt_num = 0
@@ -26,6 +30,10 @@ def task_two():
         else:
             print("correct password")
 
+    ############################
+    ######### 6 marks ##########
+    ############################
+
 def task_three():
     traceTable1 = """0	0	100	0	
 2	2	100	2	
@@ -36,7 +44,15 @@ def task_three():
 Min sunshine hours: 3
 Total sunshine hours: 20"""
 
+    ############################
+    ######### 3 marks ##########
+    ############################
+
 problem1 =  "The problem with the original algorithm is that it does not correctly initialize the maxHours, minHours, and totalSunshine variables. They are initially set to values that may not be accurate for the given input data, and it assumes that the user will input at least one positive value before entering -1. If the user doesn't input any positive values, the results will be incorrect."
+
+    ############################
+    ######### 2 marks ##########
+    ############################
 
 traceTable2 = """0	0	100	0	
 2	2	100	2	
@@ -46,3 +62,10 @@ traceTable2 = """0	0	100	0
 -1	8	3	20	Max sunshine hours: 8
 Min sunshine hours: 3
 Total sunshine hours: 20"""
+
+    ############################
+    ######### 2 marks ##########
+    ############################
+
+
+############## total = 19

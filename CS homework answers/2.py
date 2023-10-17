@@ -4,6 +4,10 @@ def task_one():
         print("Hello Hazel")
     else:
         print(f"We havent met yet, {name}")
+    
+    ############################
+    ######### 4 marks ##########
+    ############################
 
 def task_two():
     temp = input("Enter the temperature")
@@ -11,8 +15,12 @@ def task_two():
     if window.lower() == “closed”:
         if temp > 25 or humidity < 50:
             print("Open the window")
-        if temp < 10 and humidity < 50:
+        elif temp < 10 and humidity < 50:
             print("Close the window")
+
+    ############################
+    ######### 4 marks ##########
+    ############################
 
 def task_three():
     answer_one = "Error... enter a number from 0 to 14"
@@ -20,6 +28,10 @@ def task_three():
     answer_three = "neutral"
     answer_four = "acidic"
     answer_five = "Error... enter a number from 0 to 14"
+
+    ############################
+    ######### 4 marks ##########
+    ############################
 
 def task_four():
     print(“Select one of the following options: ”)
@@ -50,6 +62,10 @@ def task_four():
         case _:
             print("invalid response")
 
+    ############################
+    ######### 4 marks ##########
+    ############################
+
 def task_five():
     year = input("enter ayear: ")
     LeapYear = FALSE
@@ -63,6 +79,11 @@ def task_five():
         print("leapyear")
     else:
         print("not a leap year")
+
+
+    ############################
+    ######### 4 marks ##########
+    ############################
 
 
 
