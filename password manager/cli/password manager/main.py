@@ -1,3 +1,5 @@
+from typing import List
+
 import time
 import hashlib
 import sys
@@ -10,30 +12,47 @@ key = ''
 global password_list
 password_list = []
 
+
+def GetAndDecryptDictionaryFile():
+    try:
+        with open('dictionary.txt', 'r') as dictionary:
+            lines = dictionary.readlines()
+            for line in lines:
+
+
+
+    except (FileNotFoundError, PermissionError) as e:
+        print(f"Error: {e}")
+        return None
+
 def two_d_password_list():
-    with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
-        lines = dictionary.readlines()
-        password_list = [line.strip().split('|') for line in lines]
-    return password_list
+    try:
+        with open('dictionary.txt', 'r') as dictionary:
+            lines = dictionary.readlines()
+            password_list = []
+            for line in lines:
+                if '|' in line:
+                    password_list.append(line.strip().split('|'))
+                else:
+                    print(f"Invalid line format: {line}")
+            return password_list
+    except FileNotFoundError:
+        print("File not found.")
+        return []
 
 #stack overflow code ---|
 #                       |
 #                       ^
-def decrypt_list(password_list, key):
-    print(key)
+# ast.literal_eval(encrypted_value)
+def decrypt_list(password_list: List[List[str]], key: bytes) -> List[List[str]]:
     f = Fernet(key)
     decrypted_passwords = []
 
-    for entry in password_list:
-        print(key)
-        decrypted_entry = [entry[0]]  # Keep the first element (name of service) as is
-        for encrypted_value in entry[1:]:
-            print(key)
-            ast.literal_eval(encrypted_value)
-            decrypted_value = f.decrypt(encrypted_value.encode()).decode()
-            decrypted_entry.append(decrypted_value)
+    for i in password_list:
+        decrypted_entry = [i[0]]  # Keep the first element (name of service) as is
+        decrypted_entry += [f.decrypt(encrypted_value.encode()).decode() for encrypted_value in i[1:]]
         decrypted_passwords.append(decrypted_entry)
-        print(key)
+
     return decrypted_passwords
 
 # Call the decryption function
@@ -43,22 +62,69 @@ def decrypt_list(password_list, key):
 
 
 
-def decrypt(thing_to_decrypt, key):
-    f = Fernet(key)
-    decrypted_text = f.decrypt(thing_to_decrypt)
-    return decrypted_text.decode()
+class Decryptor:
+    def __init__(self, thing_to_decrypt, key):
+        self.thing_to_decrypt = thing_to_decrypt
+        self.key = key
+        self.f = Fernet(key)
+    
+    def decrypt(self):
+        try:
+            decrypted_text = self.f.decrypt(self.thing_to_decrypt)
+            return decrypted_text.decode()
+        except Exception as e:
+            print("Error decrypting: ", str(e))
+            return None
 
-def read_file():
-    with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
-        lines = dictionary.readlines()
+def read_dictionary_file():
+    try:
+        lines = []
+        with open('dictionary.txt', 'r') as dictionary:
+            for line in dictionary:
+                lines.append(line)
         return lines
+    except (FileNotFoundError, PermissionError) as e:
+        print(f"Error: {e}")
+        return None
 
 def encrypt(thing_to_encrypt, key):
-    f = Fernet(key)
-    cipher_text = f.encrypt(thing_to_encrypt.encode())
-    return cipher_text
+    """
+    Encrypts the given string using the provided key.
 
-def check_if_edit_parameters_correct(thing_to_check):
+    Args:
+        thing_to_encrypt (str): The string to encrypt.
+        key (bytes): The encryption key.
+
+    Returns:
+        bytes: The encrypted cipher text.
+
+    Raises:
+        ValueError: If thing_to_encrypt is not a string or key is not bytes.
+        Exception: If an error occurs during the encryption process.
+    """
+    try:
+        if not isinstance(thing_to_encrypt, str):
+            raise ValueError("thing_to_encrypt must be a string")
+        if not isinstance(key, bytes):
+            raise ValueError("key must be bytes")
+
+        f = Fernet(key)
+        cipher_text = f.encrypt(thing_to_encrypt.encode())
+        return cipher_text
+    except Exception as e:
+        print("An error occurred during encryption:", str(e))
+        return None
+
+def check_input(thing_to_check):
+    """
+    Checks if the input is correct or not.
+    
+    Args:
+        thing_to_check (str): The input to be checked.
+        
+    Returns:
+        str: The corrected input.
+    """
     pass_check = False
     while not pass_check:
         print('\n') 
@@ -72,11 +138,41 @@ def check_if_edit_parameters_correct(thing_to_check):
         else:
             print("Invalid input. Please try again.")
 
-        thing_to_check = input("Enter the name >> ")
-        corrected_thing = check_if_edit_parameters_correct(thing_to_check)
-        print(f"The corrected name is: {corrected_thing}")
-        return corrected_thing
+def ask_for_input():
+    """
+    Asks for user input and checks if it is correct.
+    
+    Returns:
+        str: The corrected input.
+    """
+    thing_to_check = input("Enter the name >> ")
+    corrected_thing = check_input(thing_to_check)
+    print(f"The corrected name is: {corrected_thing}")
+    return corrected_thing
+
+def check_if_edit_parameters_correct(thing_to_check):
+    """
+    Checks if the input is correct or not.
+    
+    Args:
+        thing_to_check (str): The input to be checked.
         
+    Returns:
+        bool: True if the input is correct, False otherwise.
+    """
+    pass_check = False
+    while not pass_check:
+        prompt = input(f"Is {thing_to_check} correct or not y/n >> ")
+        if prompt.lower() == 'y':
+            pass_check = True  # Set pass_check to True when the input is correct
+            return True
+        elif prompt.lower() == 'n':
+            thing_to_check = input("Enter the correct text >> ")
+        else:
+            print("Invalid input. Please try again.")
+    return False
+        
+
 
 
     
@@ -124,7 +220,7 @@ def edit(key):
                     check_if_correct = input(f"Name of service = {name_of_service} \n\nUsername = {username}\n\nEmail = {email}\n\nPassword = {password}\n\nIs this correct? y/n >> ")
                     print("\n")
                     if check_if_correct.lower() == 'y':
-                        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'a') as dictionary:
+                        with open('dictionary.txt', 'a') as dictionary:
                             dictionary.write(f"{name_of_service}|{encrypted_username}|{encrypted_email}|{encrypted_password}") 
                             dictionary.write('\n')      
                         invalid_input = False
@@ -157,11 +253,6 @@ def exploring(key):
     splurge_or_search = input("\nType \"s\" to search for a password or \"e\" to see all >> \n")
     if splurge_or_search.lower() == "s":
         password_list = two_d_password_list()
-        for value in password_list[0]:
-            ast.literal_eval(value)
-        print(password_list)
-        decrypted_passwords = decrypt_list(password_list, key)
-        print(decrypted_passwords)
     elif splurge_or_search.lower() == "e":
         pass
 
@@ -176,6 +267,7 @@ def exploring(key):
 #################
 ### main menu ###
 #################
+
 
 def start_screen():
     print("----------------------------------------")
@@ -203,9 +295,7 @@ def login(allowed_access):
         return allowed_access, key
     else:
         allowed_access = False
-        print("wrong password")
-        time.sleep(5)
-        sys.exit()
+        return "Incorrect password"
         
 def main(edit, key):
     allowed_access = False
