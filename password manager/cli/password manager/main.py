@@ -75,9 +75,32 @@ def read_dictionary_file():
         return None
 
 def encrypt(thing_to_encrypt, key):
-    f = Fernet(key)
-    cipher_text = f.encrypt(thing_to_encrypt.encode())
-    return cipher_text
+    """
+    Encrypts the given string using the provided key.
+
+    Args:
+        thing_to_encrypt (str): The string to encrypt.
+        key (bytes): The encryption key.
+
+    Returns:
+        bytes: The encrypted cipher text.
+
+    Raises:
+        ValueError: If thing_to_encrypt is not a string or key is not bytes.
+        Exception: If an error occurs during the encryption process.
+    """
+    try:
+        if not isinstance(thing_to_encrypt, str):
+            raise ValueError("thing_to_encrypt must be a string")
+        if not isinstance(key, bytes):
+            raise ValueError("key must be bytes")
+
+        f = Fernet(key)
+        cipher_text = f.encrypt(thing_to_encrypt.encode())
+        return cipher_text
+    except Exception as e:
+        print("An error occurred during encryption:", str(e))
+        return None
 
 def check_input(thing_to_check):
     """
@@ -263,9 +286,7 @@ def login(allowed_access):
         return allowed_access, key
     else:
         allowed_access = False
-        print("wrong password")
-        time.sleep(5)
-        sys.exit()
+        return "Incorrect password"
         
 def main(edit, key):
     allowed_access = False
