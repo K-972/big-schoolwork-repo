@@ -12,6 +12,19 @@ key = ''
 global password_list
 password_list = []
 
+
+def GetAndDecryptDictionaryFile():
+    try:
+        with open('dictionary.txt', 'r') as dictionary:
+            lines = dictionary.readlines()
+            for line in lines:
+
+
+
+    except (FileNotFoundError, PermissionError) as e:
+        print(f"Error: {e}")
+        return None
+
 def two_d_password_list():
     try:
         with open('dictionary.txt', 'r') as dictionary:
@@ -66,7 +79,7 @@ class Decryptor:
 def read_dictionary_file():
     try:
         lines = []
-        with open('/workspaces/big-schoolwork-repo/password manager/cli/password manager/dictionary.txt', 'r') as dictionary:
+        with open('dictionary.txt', 'r') as dictionary:
             for line in dictionary:
                 lines.append(line)
         return lines
@@ -161,6 +174,7 @@ def check_if_edit_parameters_correct(thing_to_check):
         
 
 
+
     
 
 
@@ -239,11 +253,6 @@ def exploring(key):
     splurge_or_search = input("\nType \"s\" to search for a password or \"e\" to see all >> \n")
     if splurge_or_search.lower() == "s":
         password_list = two_d_password_list()
-        for value in password_list[0]:
-            ast.literal_eval(value)
-        print(password_list)
-        decrypted_passwords = decrypt_list(password_list, key)
-        print(decrypted_passwords)
     elif splurge_or_search.lower() == "e":
         pass
 
