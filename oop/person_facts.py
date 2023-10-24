@@ -24,8 +24,9 @@ ethan = person(name, age, email, countrycode, phone_number)
 class tony(person):
     def __str__(self):
         pass
-
-
+print('walking')
+print('tangible')
+print('talking')
 print(ethan)
 
 
