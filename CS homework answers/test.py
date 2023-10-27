@@ -1,12 +1,13 @@
-left = []2,5,-1,-1,-1,-1]
-
-
-def traverse (pos)
-    if left(pos) != -1:
-        traverse (left(pos))
-    if right(pos) != -1:
-        traverse (right (pos))
-    print(name(pos))
-
-traverse(0)
+x = int(input("Enter the first integer: "))
+y = int(input("Enter the second integer: "))
+z = 0
+while x > 0:
+    if x % 2 == 1:
+        z = z + y
+    x = x // 2
+    y = y * 2
+    print(f'x = {x}, y = {y}')
+    print ("Answer =", z)
+#print ("Answer =", z)	
+#print(f'x = {x}, y = {y}')
 

@@ -7,6 +7,11 @@ from cryptography.fernet import Fernet
 import ast
 
 
+# i don't know what this does or why it is here. but it stays because everytime i remove it my programme breaks
+import os
+print(os.getcwd())
+
+
 key = ''
 
 global password_list
@@ -18,6 +23,7 @@ def GetAndDecryptDictionaryFile():
         with open('dictionary.txt', 'r') as dictionary:
             lines = dictionary.readlines()
             for line in lines:
+                pass
 
 
 
